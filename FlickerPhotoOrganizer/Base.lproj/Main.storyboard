@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rL2-d8-U1k">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +13,104 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FlickerPhotoOrganizer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="miI-z6-ayD">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n4Q-Ev-Qin">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="n4Q-Ev-Qin" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Aqk-cy-PBI"/>
+                            <constraint firstItem="miI-z6-ayD" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="DtL-M0-S0h"/>
+                            <constraint firstItem="miI-z6-ayD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LnK-34-4VQ"/>
+                            <constraint firstItem="miI-z6-ayD" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="Meq-6z-djD"/>
+                            <constraint firstItem="n4Q-Ev-Qin" firstAttribute="top" secondItem="miI-z6-ayD" secondAttribute="bottom" id="icT-C4-Xf0"/>
+                            <constraint firstItem="n4Q-Ev-Qin" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ind-CQ-Zh0"/>
+                            <constraint firstItem="n4Q-Ev-Qin" firstAttribute="top" secondItem="miI-z6-ayD" secondAttribute="bottom" id="wYa-G2-2je"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="n4Q-Ev-Qin" secondAttribute="trailing" id="y9l-Yu-aae"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="EtQ-Ol-Oeg"/>
+                    <connections>
+                        <outlet property="photoTable" destination="n4Q-Ev-Qin" id="Lgv-cf-5HL"/>
+                        <outlet property="searchBar" destination="miI-z6-ayD" id="ydj-K9-3uf"/>
+                        <segue destination="pMk-tE-Kry" kind="showDetail" id="doy-Qj-HwK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1608.8" y="133.5832083958021"/>
+        </scene>
+        <!--Photo Detail View Controller-->
+        <scene sceneID="nHd-vY-cdZ">
+            <objects>
+                <viewController storyboardIdentifier="PhotoDetailViewController" id="pMk-tE-Kry" customClass="PhotoDetailViewController" customModule="FlickerPhotoOrganizer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="brD-4Z-OxI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iqI-sS-POe">
+                                <rect key="frame" x="0.0" y="20" width="375" height="527"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lkc-Rr-q19">
+                                <rect key="frame" x="0.0" y="547" width="375" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="aW4-qG-d7E"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iqI-sS-POe" firstAttribute="leading" secondItem="k7z-5C-OkC" secondAttribute="leading" id="81T-c1-FTi"/>
+                            <constraint firstItem="iqI-sS-POe" firstAttribute="top" secondItem="k7z-5C-OkC" secondAttribute="top" id="C0J-g3-sdK"/>
+                            <constraint firstItem="Lkc-Rr-q19" firstAttribute="bottom" secondItem="k7z-5C-OkC" secondAttribute="bottom" id="EQe-hL-OaH"/>
+                            <constraint firstItem="Lkc-Rr-q19" firstAttribute="top" secondItem="iqI-sS-POe" secondAttribute="bottom" id="J6D-64-unr"/>
+                            <constraint firstItem="iqI-sS-POe" firstAttribute="trailing" secondItem="k7z-5C-OkC" secondAttribute="trailing" id="ToW-Q0-UyW"/>
+                            <constraint firstItem="Lkc-Rr-q19" firstAttribute="top" secondItem="iqI-sS-POe" secondAttribute="bottom" id="Ude-jh-WV7"/>
+                            <constraint firstItem="Lkc-Rr-q19" firstAttribute="trailing" secondItem="k7z-5C-OkC" secondAttribute="trailing" id="WxA-iA-1Xx"/>
+                            <constraint firstItem="Lkc-Rr-q19" firstAttribute="centerX" secondItem="brD-4Z-OxI" secondAttribute="centerX" id="iU2-dP-QjA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="k7z-5C-OkC"/>
+                    </view>
+                    <connections>
+                        <outlet property="photoTitle" destination="Lkc-Rr-q19" id="vdU-S5-y1h"/>
+                        <outlet property="photoView" destination="iqI-sS-POe" id="wzx-5b-h31"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZQA-pN-zTO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="33.733133433283363"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kPT-HG-MMT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rL2-d8-U1k" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hCI-1O-6Ot">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="A0r-9I-7Di"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JRd-sm-CED" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="669.60000000000002" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>
